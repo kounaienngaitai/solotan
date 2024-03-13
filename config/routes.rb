@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
 
   scope module: 'public' do
+    root 'homes#top', as: 'top'
+
     get 'users/mypage' => 'users#show'
     patch 'users/mypage' => 'users#update'
     get 'users/mypage/edit' => 'users#edit'
