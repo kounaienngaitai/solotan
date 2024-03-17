@@ -1,22 +1,18 @@
 # frozen_string_literal: true
+class Admin::SessionsController < Devise::SessionsController
 
-class Public::SessionsController < Devise::SessionsController
+
 
   def after_sign_in_path_for(resource)
-    users_mypage_path
+    admin_top_path
   end
 
   def after_sign_out_path_for(resource)
-    top_path
-  end
-
-  def guest_sign_in
-    user = User.guest
-    sign_in user
-    redirect_to users_mypage_path, notice: "ゲストユーザーでログインしました。"
+    new_admin_session_path
   end
 
 end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
