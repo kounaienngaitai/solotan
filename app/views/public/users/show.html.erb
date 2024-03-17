@@ -3,8 +3,60 @@
  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
 <% end %>
 
-<h1>マイページ画面</h1>
 
-<h2>ログイン、サインアップ後はこの画面に遷移します。</h2>
+<div class="container">
+ <div class="row">
+  <div class="col">
+    <h4 class="my-5">マイページ</h4>
+    <div class="d-flex align-items-center">
+      <h3>登録情報</h3>
+      <%= link_to "編集する", users_mypage_edit_path, class:"btn btn-success ml-3" %>
+    </div>
+    <table class="table table-bordered">
+      <tr>
+      <td class="bg-light">氏名</td>
+      <td><%= @user.last_name %><%= @user.first_name %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">カナ</td>
+        <td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">ハンドルネーム</td>
+        <td><%= @user.handle_name %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">メールアドレス</td>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">生年月日</td>
+        <td><%= @user.birth_date %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">郵便番号</td>
+        <td><%= @user.postal_code %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">住所</td>
+        <td><%= @user.address %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">電話番号</td>
+        <td><%= @user.telephone_number %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<h1>マイページ画面</h1>
 
 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
