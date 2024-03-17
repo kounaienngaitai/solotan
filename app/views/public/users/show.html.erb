@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
 <h1>マイページ画面</h1>
 
 <h2>ログイン、サインアップ後はこの画面に遷移します。</h2>
