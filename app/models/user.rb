@@ -33,4 +33,6 @@ class User < ApplicationRecord
     end
   end
 
+  enum status: { active: 0, suspended: 1, withdrawn: 2 }
+
 end
