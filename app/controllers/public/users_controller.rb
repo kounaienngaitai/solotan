@@ -14,6 +14,7 @@ before_action :authenticate_user!
     if @user.update(user_params)
       redirect_to users_mypage_path, notice: "会員情報が更新されました。"
     else
+      flash[:notice] = "更新のお手続きが出来ませんでした。"
       render :edit
     end
   end
@@ -22,6 +23,10 @@ before_action :authenticate_user!
   end
 
   def withdrawal
+    @user = current_user
+    @user.update(status: 2)
+    reset_session
+    redirect_to top_path, notice: "退会のお手続きが完了しました。"
   end
 
   private
