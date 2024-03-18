@@ -14,6 +14,11 @@
     </div>
     <table class="table table-bordered">
       <tr>
+        <td class="bg-light">プロフィール画像</td>
+        <td><%= image_tag @user.profile_image, size: "100x100" %></td>
+      </tr>
+
+      <tr>
       <td class="bg-light">氏名</td>
       <td><%= @user.last_name %><%= @user.first_name %></td>
       </tr>
