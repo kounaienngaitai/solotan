@@ -15,7 +15,7 @@
     <table class="table table-bordered">
       <tr>
         <td class="bg-light">プロフィール画像</td>
-        <td><%= image_tag @user.profile_image, size: "100x100" %></td>
+        <td><%= image_tag @user.get_profile_image(100, 100), size: "100x100" %></td>
       </tr>
 
       <tr>
@@ -56,6 +56,11 @@
       <tr>
         <td class="bg-light">電話番号</td>
         <td><%= @user.telephone_number %></td>
+      </tr>
+
+      <tr>
+        <td class="bg-light">会員ステータス</td>
+        <td><%= @user.status_i18n %></td>
       </tr>
     </table>
   </div>
