@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-
+before_action :authenticate_user!
 
   def show
     @user = current_user
@@ -35,7 +35,8 @@ class Public::UsersController < ApplicationController
                                  :email,
                                  :postal_code,
                                  :address,
-                                 :telephone_number)
+                                 :telephone_number,
+                                 :profile_image)
   end
 
 end
