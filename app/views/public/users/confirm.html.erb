@@ -1,2 +1,38 @@
-<h1>Public::Users#confirm</h1>
-<p>Find me in app/views/public/users/confirm.html.erb</p>
+<div class="container">
+  <div class="pt-5 text-center">
+    <h3>
+      本当に退会しますか？
+      <br>
+      <br>
+      退会手続きをされますと、全てのサービスがご利用いただけなくなります。<br>
+      再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
+      本当に退会してよろしいですか？
+    </h3>
+  </div>
+  <div class="text-center withdraw-checked">
+    <label>
+      <input type="checkbox" name="withdraw_agreement" id="withdraw-agreement">
+      以上の内容を理解した。
+    </label>
+    </div>
+  </div>
+  <div class="button text-center">
+    <%= link_to "退会する", users_withdrawal_path, method: :patch, class: "btn btn-outline-danger", id: "withdraw-button", disabled: true %>
+    <%= link_to "退会しない", users_mypage_path,class:"btn btn-success" %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const agreementCheckbox = document.getElementById("withdraw-agreement");
+    const withdrawButton = document.getElementById("withdraw-button");
+
+    // ページ読み込み時にボタンの無効化を設定
+    withdrawButton.classList.toggle("disabled", !agreementCheckbox.checked);
+
+    // チェックボックスの変更に応じてボタンを制御
+    agreementCheckbox.addEventListener("change", function() {
+      withdrawButton.classList.toggle("disabled", !agreementCheckbox.checked);
+    });
+  });
+</script>
