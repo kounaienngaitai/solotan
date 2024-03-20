@@ -1,9 +1,21 @@
 <!--サインアップ・サインインの機能のみ実装-->
 
 <%- if controller_name != 'sessions' %>
-  <%= link_to "ログイン", new_session_path(resource_name), class: "btn btn-primary" %><br />
+  <div>
+    <%= link_to "ログイン", new_session_path(resource_name), class: "btn btn-primary" %>
+  </div>
+  <br>
+  <div>
+    <%= link_to "トップページに戻る",top_path %>
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "新規登録", new_registration_path(resource_name), class: "btn btn-success" %><br />
+  <div>
+  <%= link_to "新規登録", new_registration_path(resource_name), class: "btn btn-success" %>
+  </div>
+  <br>
+  <div>
+  <%= link_to "トップページに戻る",top_path %>
+  </div>
 <% end %>

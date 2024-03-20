@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     root 'homes#top', as: 'top'
 
     get 'users/mypage' => 'users#show'
-    patch 'users/mypage' => 'users#update'
     get 'users/mypage/edit' => 'users#edit'
+    patch 'users/mypage', to: 'users#update', as: 'users_mypage_update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdrawal' => 'users#withdrawal'
   end
