@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'posts/new'
+    get 'posts/show'
+    get 'posts/index'
+    get 'posts/edit'
+  end
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -12,8 +18,6 @@ Rails.application.routes.draw do
     root 'homes#top', as: 'top'
   end
 
-
-
   scope module: 'public' do
     root 'homes#top', as: 'top'
 
@@ -22,6 +26,8 @@ Rails.application.routes.draw do
     patch 'users/mypage', to: 'users#update', as: 'users_mypage_update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdrawal' => 'users#withdrawal'
+
+    resources :posts
   end
 
   devise_scope :user do
