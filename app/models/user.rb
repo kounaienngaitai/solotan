@@ -33,6 +33,10 @@ class User < ApplicationRecord
     end
   end
 
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+
   enum status: { active: 0, suspended: 1, withdrawn: 2 }
 
 end

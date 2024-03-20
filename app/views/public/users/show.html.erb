@@ -10,7 +10,9 @@
     <h4 class="my-5">マイページ</h4>
     <div class="d-flex align-items-center">
       <h3>登録情報</h3>
-      <%= link_to "編集する", users_mypage_edit_path, class:"btn btn-success ml-3" %>
+      <% unless @user.guest_user? %>
+        <%= link_to "編集する", users_mypage_edit_path, class:"btn btn-success ml-3" %>
+      <% end %>
     </div>
     <table class="table table-bordered">
       <tr>
