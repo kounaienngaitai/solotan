@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'posts/new'
-    get 'posts/show'
-    get 'posts/index'
-    get 'posts/edit'
-  end
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
