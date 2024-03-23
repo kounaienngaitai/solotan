@@ -1,58 +1,151 @@
-<%= flash[:alert] %>
-
-<h2>ソロ活新規投稿画面</h2>
-
-<%= form_with model: @post, url: posts_path, method: :post do |f| %>
-<h4>イメージ画像</h4>
-<%= f.file_field :post_image, placeholder: "投稿画像", accept: "image/*" %>
-<h4>タイトル</h4>
-<%= f.text_field :title %>
-<h4>施設名/団体名</h4>
-<%= f.text_field :facility %>
-<h4>ポイント</h4>
-<%= f.text_area :point %>
-<h4>郵便番号</h4>
-<%= f.text_field :postal_code %>
-<h4>住所</h4>
-<%= f.text_field :address %>
-<h4>最寄り駅</h4>
-<%= f.text_field :nearest_station %>
-<h4>アクセス</h4>
-<%= f.text_area :access %>
-<h4>電話番号</h4>
-<%= f.text_field :telephone_number %>
-<h4>営業時間/活動時間</h4>
-<%= f.text_field :open %>
-<h4>平均料金</h4>
-<%= f.text_field :average_price %>
-<h4>定休日</h4>
-<%= f.text_field :closed %>
-<h4>詳細URL</h4>
-<%= f.text_field :detail_url %>
-<h4>備考欄</h4>
-<%= f.text_field :note %>
-  <div class="form-group" id="star">
-    <%= f.label :star %>
-    <%= f.hidden_field :star, id: :review_star, class: "form-control" %>
-    <div id="post_raty"></div>
+<div class="container text-center">
+  <%= flash[:alert] %>
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h2>ソロ活新規投稿画面</h2>
+    </div>
   </div>
-  <script>
-    $(document).on('turbolinks:load', function() {
-    let elem = document.querySelector('#post_raty');
-    if(elem == null) return;
 
-    elem.innerHTML = ""
-    let opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[star]',
-    };
-    raty(elem, opt);
-    });
+  <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>イメージ画像</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.file_field :post_image, placeholder: "投稿画像", accept: "image/*" %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>タイトル</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>施設名/団体名</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :facility %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>ポイント</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_area :point %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>郵便番号</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :postal_code %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>住所</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :address %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>最寄り駅</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :nearest_station %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>アクセス</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_area :access %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>電話番号</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :telephone_number %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>営業時間/活動時間</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :open %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>平均料金</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :average_price %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>定休日</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :closed %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>詳細URL</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :detail_url %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>備考欄</h4>
+      </div>
+      <div class="col text-center">
+        <%= f.text_field :note %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>ソロ活難易度</h4>
+      </div>
+      <div class="col text-center">
+        <div id="post_raty"></div>
+      </div>
+    </div>
+
+    <script>
+      $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#post_raty');
+      if(elem == null) return;
+
+      elem.innerHTML = ""
+      let opt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'post[star]',
+      };
+      raty(elem, opt);
+      });
     </script>
-<%= f.submit '投稿' %>
 
-<% end %>
+    <%= f.submit '投稿' %>
+  <% end %>
+</div>
 
 
