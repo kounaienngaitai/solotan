@@ -1,2 +1,123 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container text-center">
+  <%= flash[:notice] %>
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h1>編集画面</h1>
+    </div>
+  </div>
+  <%= form_with model: @post, url: post_path, method: :patch do |f| %>
+    <div class="row py-3">
+      <div class="col">
+        イメージ画像
+      </div>
+      <div>
+        <%= f.file_field :post_image, placeholder: "イメージ画像", accept: "image/*" %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        タイトル
+      </div>
+      <div class="col">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        施設名/団体名
+      </div>
+      <div class="col">
+        <%= f.text_field :facility %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        郵便番号
+      </div>
+      <div class="col">
+        <%= f.text_field :postal_code %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        住所
+      </div>
+      <div class="col">
+        <%= f.text_field :address %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        最寄り駅
+      </div>
+      <div class="col">
+        <%= f.text_field :nearest_station %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        アクセス
+      </div>
+      <div class="col">
+        <%= f.text_area :access %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        電話番号
+      </div>
+      <div class="col">
+        <%= f.text_field :telephone_number %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        営業時間/活動時間
+      </div>
+      <div class="col">
+        <%= f.text_field :open %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        平均料金
+      </div>
+      <div class="col">
+        <%= f.text_field :average_price %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        定休日
+      </div>
+      <div class="col">
+        <%= f.text_field :closed %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        詳細URL
+      </div>
+      <div class="col">
+        <%= f.text_field :detail_url %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        備考欄
+      </div>
+      <div class="col">
+        <%= f.text_field :note %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        <%= link_to "一覧へ戻る", posts_path, class:"btn btn-primary" %>
+      </div>
+      <div class="col">
+        <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
