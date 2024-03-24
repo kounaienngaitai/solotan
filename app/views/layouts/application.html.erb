@@ -38,6 +38,22 @@
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li>
+              <%= link_to admin_top_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-home"></i> 管理者トップページ
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to admin_posts_path,class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-list"></i> 一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              <% end %>
+            </li>
           <% else %>
             <li>
               <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
@@ -52,6 +68,11 @@
             <li>
               <%= link_to users_guest_sign_in_path,class: 'nav-link text-light' do %>
                 <i class="fas fa-sign-in-alt"></i> ゲストログイン
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_admin_session_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-in-alt"></i> 管理者用
               <% end %>
             </li>
           <% end %>

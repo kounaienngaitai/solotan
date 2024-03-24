@@ -4,12 +4,13 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
   }
 
   namespace :admin do
     root 'homes#top', as: 'top'
+    resources :posts, except: [:new]
   end
 
   scope module: 'public' do
