@@ -4,15 +4,14 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
   }
 
   namespace :admin do
     root 'homes#top', as: 'top'
+    resources :posts, except: [:new]
   end
-
-
 
   scope module: 'public' do
     root 'homes#top', as: 'top'
@@ -22,6 +21,8 @@ Rails.application.routes.draw do
     patch 'users/mypage', to: 'users#update', as: 'users_mypage_update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdrawal' => 'users#withdrawal'
+
+    resources :posts
   end
 
   devise_scope :user do

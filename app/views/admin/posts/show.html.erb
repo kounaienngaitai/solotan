@@ -1,0 +1,149 @@
+<div class="container text-center">
+  <%= flash[:notice] %>
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h1>詳細画面</h1>
+    </div>
+  </div>
+    <div class="row py-3">
+      <div class="col text-center">
+        <%= image_tag @post.get_post_image(100, 100), size: "100x100" %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        タイトル
+      </div>
+      <div class="col">
+        <%= @post.title %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        施設名/団体名
+      </div>
+      <div class="col">
+        <%= @post.facility %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        おすすめポイント
+      </div>
+      <div class="col">
+        <%= @post.point %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        郵便番号
+      </div>
+      <div class="col">
+        <%= @post.postal_code %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        住所
+      </div>
+      <div class="col">
+        <%= @post.address %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        最寄り駅
+      </div>
+      <div class="col">
+        <%= @post.nearest_station %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        アクセス
+      </div>
+      <div class="col">
+        <%= @post.access %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        電話番号
+      </div>
+      <div class="col">
+        <%= @post.telephone_number %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        営業時間/活動時間
+      </div>
+      <div class="col">
+        <%= @post.open %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        平均料金
+      </div>
+      <div class="col">
+        <%= @post.average_price %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        定休日
+      </div>
+      <div class="col">
+        <%= @post.closed %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        詳細URL
+      </div>
+      <div class="col">
+        <%= @post.detail_url %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        備考欄
+      </div>
+      <div class="col">
+        <%= @post.note %>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        ソロ活難易度（星）
+      </div>
+      <div class="col">
+        <%= render 'star_rating', post: @post %>
+      </div>
+    </div>
+    <div class="row py-4">
+      <div class="col">
+        <%= link_to "編集する", edit_admin_post_path %>
+      </div>
+      <div class="col">
+        <%= link_to "削除する", admin_post_path(@post), method: :delete, data: {confirm: "削除しますか？"} %>
+      </div>
+    </div>
+  </div>
+</div>
+
