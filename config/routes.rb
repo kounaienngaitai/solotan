@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top', as: 'top'
     resources :posts, except: [:new]
+    resources :users, only: [:index, :show, :edit, :update]
+    get 'users/posts/:id' => 'users#posts'
   end
 
   scope module: 'public' do
