@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root 'homes#top', as: 'top'
     resources :posts, except: [:new]
     resources :users, only: [:index, :show, :edit, :update]
-    get 'users/posts/:id' => 'users#posts'
+    get 'users/posts/:id' => 'users#posts', as: 'user_posts'
   end
 
   scope module: 'public' do
