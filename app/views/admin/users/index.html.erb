@@ -1,0 +1,39 @@
+<div class="container text-center">
+<%= flash[:notice] %>
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h1>会員一覧一覧画面</h1>
+    </div>
+  </div>
+  <div class="row pt-5">
+    <div class="col text-center">
+      会員ID
+    </div>
+    <div class="col text-center">
+      氏名
+    </div>
+    <div class="col text-center">
+      メールアドレス
+    </div>
+    <div class="col text-center">
+      ステータス
+    </div>
+  </div>
+  <% @users.each do |user| %>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <%= user.id %>
+      </div>
+      <div class="col text-center">
+        <%= link_to "#{user.last_name} #{user.first_name}", admin_user_path(user) %>
+      </div>
+      <div class="col text-center">
+        <%= user.email %>
+      </div>
+      <div class="col text-center">
+        <%= user.status_i18n %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
