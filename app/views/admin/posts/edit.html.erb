@@ -118,6 +118,17 @@
         <div id="post_raty"></div>
       </div>
     </div>
+    <div class="row py-3">
+      <div class="col">
+        投稿ステータス
+      </div>
+      <div class="col">
+        <%= f.label :status, class: 'hidden-label' %>
+        <%= f.radio_button :status, 'published' %>公開する
+        <%= f.radio_button :status, 'draft' %>下書き
+        <%= f.radio_button :status, 'unpublished' %>非公開
+      </div>
+    </div>
 
     <script>
       $(document).on('turbolinks:load', function() {
