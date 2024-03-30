@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = current_admin.posts
+    @posts = Post.where(status: ['published']).where(admin_id: current_admin.id).page(params[:page]).per(10)
   end
 
   def create
@@ -38,6 +38,10 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_posts_path, notice: "ソロ活情報が削除されました。"
   end
 
+  def confirm
+    @posts = Post.where(status: ['draft', 'unpublished']).where(admin_id: current_admin.id).page(params[:page]).per(10)
+  end
+
   def post_params
     params.require(:post).permit(:title,
                                  :facility,
@@ -55,6 +59,7 @@ class Admin::PostsController < ApplicationController
                                  :post_image,
                                  :user_id,
                                  :admin_id,
+                                 :status,
                                  :star)
   end
 end
