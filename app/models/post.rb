@@ -5,6 +5,8 @@ class Post < ApplicationRecord
 
   validate :user_or_admin
 
+  enum status: { published: 0, draft: 1, unpublished: 2, }
+
 
   def get_post_image(width, height)
     unless post_image.attached?

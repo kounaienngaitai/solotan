@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.admin_id = ""
-    if @post.save!
+    if @post.save
       redirect_to post_path(@post), notice: "ソロ活情報が投稿出来ました！"
     else
       flash[:notice] = "投稿に失敗しました。"
@@ -21,7 +21,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.published.page(params[:page]).per(10)
+
 
   end
 
@@ -46,6 +47,10 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path, notice: "ソロ活情報が削除されました。"
   end
 
+  def confirm
+    @posts = Post.where(status: ['draft', 'unpublished']).where(user_id: current_user.id).page(params[:page]).per(10)
+  end
+
   private
 
   def post_params
@@ -65,6 +70,7 @@ class Public::PostsController < ApplicationController
                                  :post_image,
                                  :user_id,
                                  :admin_id,
+                                 :status,
                                  :star)
   end
 end
