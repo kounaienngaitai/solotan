@@ -5,6 +5,11 @@ ja:
         active: "有効"
         suspended: "使用停止中"
         withdrawn: "退会"
+    post:
+      status:
+        published: "公開中"
+        draft: "下書き"
+        unpublished: "非公開"
   activerecord:
     errors:
       messages:

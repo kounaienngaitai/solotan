@@ -2,15 +2,16 @@
 <%= flash[:notice] %>
   <div class="row pt-5">
     <div class="col text-center">
-      <h1>投稿一覧画面</h1>
+      <h1>下書き・非公開一覧画面</h1>
     </div>
   </div>
   <div class="row pt-5">
     <div class="col"></div>
     <div class="col"></div>
     <div class="col"></div>
+    <div class="col"></div>
     <div class="col">
-      <%= link_to "新規作成", new_post_path %>
+      <%= link_to "新規作成", admin_posts_path %>
     </div>
   </div>
   <div class="row py-3">
@@ -33,6 +34,9 @@
     <div class="col">
       ソロ活難易度
     </div>
+    <div class="col">
+      投稿ステータス
+    </div>
   </div>
   <% @posts.each do |post| %>
     <div class="row">
@@ -42,19 +46,19 @@
       </div>
 
       <div class="col">
-        <%= post.user.handle_name %>
-      </div>
-
-      <div class="col">
         <%= image_tag post.get_post_image(100, 100), size: "100x100" %>
       </div>
 
       <div class="col">
-        <%= link_to post.title, post_path(post) %>
+        <%= link_to post.title, admin_post_path(post) %>
       </div>
 
       <div class="col">
         <%= render 'star_rating', post: post %>
+      </div>
+
+      <div class="col">
+        <%= post.status_i18n %>
       </div>
 
     </div>
@@ -65,5 +69,5 @@
       <%= paginate @posts %>
     </div>
   </div>
-</div>
 
+</div>
