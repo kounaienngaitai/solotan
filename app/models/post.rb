@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  acts_as_taggable
   has_one_attached :post_image
   belongs_to :user, optional: true
   belongs_to :admin, optional: true
@@ -14,6 +15,14 @@ class Post < ApplicationRecord
       post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     post_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def self.search(keyword)
+    if keyword.present?
+      joins(:tags).where('tags.name LIKE ?', "%#{keyword}%")
+    else
+      all
+    end
   end
 
   private

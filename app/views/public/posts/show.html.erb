@@ -144,13 +144,25 @@
         <%= @post.status_i18n %>
       </div>
     </div>
+    <div class="row py-3">
+      <div class="col">
+        タグ
+      </div>
+      <div class="col">
+        <%= @post.tag_list %>
+      </div>
+    </div>
     <div class="row py-4">
-      <% if @user.id == current_user.id %>
+      <% if @user && current_user && @user.id == current_user.id %>
         <div class="col">
           <%= link_to "編集する", edit_post_path %>
         </div>
         <div class="col">
           <%= link_to "削除する", post_path(@post), method: :delete, data: {confirm: "削除しますか？"} %>
+        </div>
+        <% else %>
+        <div class="col">
+          こちらの記事の編集及び削除はできません
         </div>
       <% end %>
     </div>
