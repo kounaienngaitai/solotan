@@ -129,6 +129,14 @@
         <%= f.radio_button :status, 'unpublished' %>非公開
       </div>
     </div>
+    <div class="row py-3">
+      <div class="col">
+        タグ
+      </div>
+      <div class="col">
+        <%= f.text_field :tag_list, value: @post.tag_list.join(','), placeholder: "複数のタグを入力する場合はタグとタグの間に「,」を入力してください", class: 'form-control' %>
+      </div>
+    </div>
 
     <script>
       $(document).on('turbolinks:load', function() {

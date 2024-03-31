@@ -21,9 +21,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.published.page(params[:page]).per(10)
-
-
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(5)
+    elsif params[:keyword]
+      @posts = Post.search(params[:keyword]).page(params[:page]).per(10)
+    else
+      @posts = Post.published.page(params[:page]).per(10)
+    end
   end
 
   def edit
@@ -71,6 +75,7 @@ class Public::PostsController < ApplicationController
                                  :user_id,
                                  :admin_id,
                                  :status,
+                                 :tag_list,
                                  :star)
   end
 end

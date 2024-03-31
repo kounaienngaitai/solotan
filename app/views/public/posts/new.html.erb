@@ -138,6 +138,15 @@
         <%= f.radio_button :status, 'unpublished' %>非公開
       </div>
     </div>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h4>タグ</h4>
+      </div>
+      <div class="col text-center">
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: @post.tag_list.join(','), placeholder: "複数のタグを入力する場合はタグとタグの間に「,」を入力してください", class: 'form-control' %>
+      </div>
+    </div>
 
     <script>
       $(document).on('turbolinks:load', function() {
@@ -155,7 +164,11 @@
       });
     </script>
 
-    <%= f.submit '投稿' %>
+    <div class="row pt-5">
+      <div class="col text-center">
+        <%= f.submit '投稿' %>
+      </div>
+    </div>
   <% end %>
 </div>
 

@@ -134,6 +134,26 @@
             <div id="post_raty"></div>
           </div>
         </div>
+        <div class="row pt-5">
+          <div class="col-5 text-center">
+            <h4>投稿ｽﾃｰﾀｽ</h4>
+          </div>
+          <div class="col-7 text-center">
+            <%= f.label :status, class: 'hidden-label' %>
+            <%= f.radio_button :status, 'published' %>公開する
+            <%= f.radio_button :status, 'draft' %>下書き
+            <%= f.radio_button :status, 'unpublished' %>非公開
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-5 text-center">
+            <h4>タグ</h4>
+          </div>
+          <div class="col-7 text-center">
+          <%= f.label :tag_list, class: 'hidden-label' %>
+          <%= f.text_field :tag_list, value: @post.tag_list.join(','), placeholder: "複数入力の場合：A,Bと入力", class: 'form-control' %>
+          </div>
+        </div>
 
         <script>
           $(document).on('turbolinks:load', function() {
@@ -150,8 +170,11 @@
           raty(elem, opt);
           });
         </script>
-
-        <%= f.submit '投稿' %>
+        <div class="row pt-5">
+          <div class="col text-center">
+            <%= f.submit '投稿' %>
+          </div>
+        </div>
       <% end %>
     </div>
 
@@ -161,16 +184,19 @@
           投稿日
         </div>
 
-        <div class="col">
+        <div class="col"></div>
 
-        </div>
-
-        <div class="col">
+        <div class="col text-center">
           タイトル
         </div>
 
+
         <div class="col">
           ソロ活難易度
+        </div>
+
+        <div class="col">
+          タグ
         </div>
       </div>
       <% @posts.each do |post| %>
@@ -190,6 +216,14 @@
 
           <div class="col">
             <%= render 'admin/posts/star_rating', post: post %>
+          </div>
+
+          <div class="col">
+            <% post.tag_list.each do |tag|%>
+              <div class="btn btn-primary">
+                <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
