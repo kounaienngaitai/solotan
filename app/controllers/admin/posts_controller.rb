@@ -60,6 +60,7 @@ class Admin::PostsController < ApplicationController
                                  :user_id,
                                  :admin_id,
                                  :status,
+                                 :tag_list,
                                  :star)
   end
 end

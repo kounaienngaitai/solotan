@@ -6,8 +6,11 @@
     </div>
   </div>
   <div class="row pt-5">
-    <div class="col"></div>
-    <div class="col"></div>
+    <div class="col">
+      <%= form_with url: posts_path, method: :get, local: true do |f| %>
+        <%= f.text_field :keyword, placeholder:"タグ検索" %><%= f.submit 'Search' %>
+      <% end %>
+    </div>
     <div class="col"></div>
     <div class="col">
       <%= link_to "新規作成", new_post_path %>
@@ -31,33 +34,48 @@
     </div>
 
     <div class="col">
+      タグ
+    </div>
+
+    <div class="col">
       ソロ活難易度
     </div>
   </div>
-  <% @posts.each do |post| %>
-    <div class="row">
+  <% if @posts.empty? %>
+    <p>該当する投稿がありませんでした。</p>
+  <% else %>
+    <% @posts.each do |post| %>
+      <div class="row">
 
-      <div class="col">
-        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+        <div class="col">
+          <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </div>
+
+        <div class="col">
+          <%= post.user ? post.user.handle_name : "管理者" %>
+        </div>
+
+        <div class="col">
+          <%= image_tag post.get_post_image(100, 100), size: "100x100" %>
+        </div>
+
+        <div class="col">
+          <%= link_to post.title, post_path(post) %>
+        </div>
+
+        <div class="col">
+          <% post.tag_list.each do |tag|%>
+            <div class="btn btn-primary">
+              <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col">
+          <%= render 'star_rating', post: post %>
+        </div>
       </div>
-
-      <div class="col">
-        <%= post.user.handle_name %>
-      </div>
-
-      <div class="col">
-        <%= image_tag post.get_post_image(100, 100), size: "100x100" %>
-      </div>
-
-      <div class="col">
-        <%= link_to post.title, post_path(post) %>
-      </div>
-
-      <div class="col">
-        <%= render 'star_rating', post: post %>
-      </div>
-
-    </div>
+    <% end %>
   <% end %>
 
   <div class="row">

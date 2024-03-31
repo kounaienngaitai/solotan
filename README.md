@@ -43,4 +43,5 @@ https://docs.google.com/spreadsheets/d/1g3ImLrje5fYap4VAMnRBuRsf6feMYAZlAVhmsjxJ
 - IDE：Cloud9
 ​
 ## 使用素材
+- Gem:devise,acts-as-taggable-on
 -　※現時点では未定
