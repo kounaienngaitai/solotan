@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center-fluid">
 <%= flash[:notice] %>
   <div class="row pt-5">
     <div class="col text-center">
@@ -9,12 +9,24 @@
     </div>
   </div>
   <div class="row pt-5">
-    <div class="col">
+    <div class="col-4">
       <%= form_with url: posts_path, method: :get, local: true do |f| %>
+        <i class="fas fa-search"></i>
         <%= f.text_field :keyword, placeholder:"タグ検索" %><%= f.submit 'Search' %>
       <% end %>
     </div>
-    <div class="col"></div>
+    <div class="col-6">
+      <div class="search-box">
+        <div class="search-form">
+          <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+              <i class="fas fa-search"></i>
+              <%= select_tag :min_search, options_for_select((1..50).map { |n| n * 1000 }), prompt: "最小価格" %>
+              <%= select_tag :max_search, options_for_select((1..50).map { |n| n * 1000 }), prompt: "最大価格" %>
+              <%= submit_tag "価格検索する", id: "submit" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <div class="col">
       <%= link_to "新規作成", new_post_path %>
     </div>
