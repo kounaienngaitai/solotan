@@ -23,16 +23,33 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(5)
-      @counts = @posts.total_count
+      @posts = Post.tagged_with("#{params[:tag_name]}")
     elsif params[:keyword]
-      @posts = Post.search(params[:keyword]).page(params[:page]).per(10)
-      @counts = @posts.total_count
+      @posts = Post.search(params[:keyword])
     else
-      @posts = Post.published.page(params[:page]).per(10)
-      @counts = Post.count
+      @posts = Post.published
     end
+
+    search = params[:search]
+    min_search = params[:min_search]
+    max_search = params[:max_search]
+
+    if search.present?
+      @posts = @posts.joins(:user).where("body LIKE ? OR name LIKE ?", "%#{search}%", "%#{search}%")
+    end
+
+    if max_search.present? && min_search.present?
+      @posts = @posts.where("average_price >= ? AND average_price <= ?", min_search, max_search)
+    elsif max_search.present?
+      @posts = @posts.where("average_price <= ?", max_search)
+    elsif min_search.present?
+      @posts = @posts.where("average_price >= ?", min_search)
+    end
+
+    @counts = @posts.count
+    @posts = @posts.page(params[:page]).per(10)
   end
+
 
   def edit
     @post = Post.find(params[:id])
