@@ -10,10 +10,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top', as: 'top'
-    resources :posts, except: [:new]
-    resources :users, only: [:index, :show, :edit, :update]
 
-    get 'users/posts/:id' => 'users#posts', as: 'user_posts'
+    resources :posts, except: [:new] do
+      resources :post_comments, only: [:destroy]
+    end
+
+    resources :users, only: [:index, :show, :edit, :update] do
+      get 'posts/:id' => 'users#posts', as: 'user_posts', on: :collection
+    end
+
     get 'confirm/posts' => 'posts#confirm', as: 'posts_confirm'
   end
 
@@ -35,5 +40,10 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
+  namespace :public do
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
+  end
 
 end
