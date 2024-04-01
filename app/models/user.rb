@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   has_many :posts
+  has_many :post_comments, dependent: :destroy
 
 
 

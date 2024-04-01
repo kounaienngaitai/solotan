@@ -4,7 +4,7 @@
 <% end %>
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <%= link_to "下書き・非公開", admin_posts_confirm_path %>
   </div>
@@ -190,13 +190,17 @@
           タイトル
         </div>
 
-
         <div class="col">
-          ソロ活難易度
+          コメント
         </div>
 
         <div class="col">
           タグ
+        </div>
+
+
+        <div class="col">
+          ソロ活難易度
         </div>
       </div>
       <% @posts.each do |post| %>
@@ -215,7 +219,7 @@
           </div>
 
           <div class="col">
-            <%= render 'admin/posts/star_rating', post: post %>
+            <%= link_to "#{post.post_comments.count} コメント", admin_post_path(post.id) %>
           </div>
 
           <div class="col">
@@ -224,6 +228,10 @@
                 <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
               </div>
             <% end %>
+          </div>
+
+          <div class="col">
+            <%= render 'admin/posts/star_rating', post: post %>
           </div>
         </div>
       <% end %>
