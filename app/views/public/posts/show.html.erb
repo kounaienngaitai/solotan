@@ -152,6 +152,32 @@
         <%= @post.tag_list %>
       </div>
     </div>
+    <div class="row py-3">
+      <div class="col">
+        コメント
+      </div>
+      <div class="col-11">
+        <%= @post.post_comments.count %>件目
+        <% @post.post_comments.each do |post_comment| %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= image_tag post_comment.user.get_profile_image(100,100) %>：
+          <%= post_comment.user.handle_name %>
+          <%= post_comment.comment %>
+        <% end %>
+        <% @post.post_comments.each do |post_comment| %>
+          <%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <%= form_with(model: [@post, @post_comment], url: public_post_post_comments_path(@post)) do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
     <div class="row py-4">
       <% if @user && current_user && @user.id == current_user.id %>
         <div class="col">
