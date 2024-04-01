@@ -97,6 +97,14 @@
     </div>
 
     <div class="col">
+      コメント
+    </div>
+
+    <div class="col">
+      タグ
+    </div>
+
+    <div class="col">
       ソロ活難易度
     </div>
   </div>
@@ -113,6 +121,18 @@
 
       <div class="col">
         <%= link_to post.title, post_path(post) %>
+      </div>
+
+      <div class="col">
+        <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+      </div>
+
+      <div class="col">
+        <% post.tag_list.each do |tag|%>
+          <div class="btn btn-primary">
+            <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+          </div>
+        <% end %>
       </div>
 
       <div class="col">

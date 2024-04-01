@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   acts_as_taggable
   has_one_attached :post_image
+  has_many :post_comments, dependent: :destroy
   belongs_to :user, optional: true
   belongs_to :admin, optional: true
 

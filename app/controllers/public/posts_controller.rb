@@ -18,15 +18,19 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @post_comment = PostComment.new
   end
 
   def index
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(5)
+      @counts = @posts.total_count
     elsif params[:keyword]
       @posts = Post.search(params[:keyword]).page(params[:page]).per(10)
+      @counts = @posts.total_count
     else
       @posts = Post.published.page(params[:page]).per(10)
+      @counts = Post.count
     end
   end
 

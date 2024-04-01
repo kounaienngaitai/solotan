@@ -153,6 +153,27 @@
         <%= @post.tag_list %>
       </div>
     </div>
+    <div class="row py-3">
+      <div class="col">
+        コメント
+      </div>
+      <div class="col">
+        <%= @post.post_comments.count %>件目
+        <% @post.post_comments.each do |post_comment| %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= image_tag post_comment.user.get_profile_image(100,100) %>：
+          <%= post_comment.user.handle_name %>
+          <%= post_comment.comment %>
+        <% end %>
+
+        <% @post.post_comments.each do |post_comment| %>
+          <%= post_comment.comment %>
+          <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        <% end %>
+
+      </div>
+    </div>
+
     <div class="row py-4">
       <div class="col">
         <%= link_to "編集する", edit_admin_post_path %>
