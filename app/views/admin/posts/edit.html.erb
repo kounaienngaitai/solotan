@@ -1,0 +1,169 @@
+<div class="container text-center">
+  <%= flash[:notice] %>
+  <div class="row pt-5">
+    <div class="col text-center">
+      <h1>編集画面</h1>
+    </div>
+  </div>
+  <%= form_with model: @post, url: admin_post_path, method: :patch do |f| %>
+    <div class="row py-3">
+      <div class="col">
+        イメージ画像
+      </div>
+      <div>
+        <%= f.file_field :post_image, placeholder: "イメージ画像", accept: "image/*" %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        タイトル
+      </div>
+      <div class="col">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        施設名/団体名
+      </div>
+      <div class="col">
+        <%= f.text_field :facility %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        郵便番号
+      </div>
+      <div class="col">
+        <%= f.text_field :postal_code %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        住所
+      </div>
+      <div class="col">
+        <%= f.text_field :address %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        最寄り駅
+      </div>
+      <div class="col">
+        <%= f.text_field :nearest_station %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        アクセス
+      </div>
+      <div class="col">
+        <%= f.text_area :access %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        電話番号
+      </div>
+      <div class="col">
+        <%= f.text_field :telephone_number %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        営業時間/活動時間
+      </div>
+      <div class="col">
+        <%= f.text_field :open %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        平均料金
+      </div>
+      <div class="col">
+        <%= f.text_field :average_price %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        定休日
+      </div>
+      <div class="col">
+        <%= f.text_field :closed %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        詳細URL
+      </div>
+      <div class="col">
+        <%= f.text_field :detail_url %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        備考欄
+      </div>
+      <div class="col">
+        <%= f.text_field :note %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        ソロ活難易度
+      </div>
+      <div class="col">
+        <div id="post_raty"></div>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        投稿ステータス
+      </div>
+      <div class="col">
+        <%= f.label :status, class: 'hidden-label' %>
+        <%= f.radio_button :status, 'published' %>公開する
+        <%= f.radio_button :status, 'draft' %>下書き
+        <%= f.radio_button :status, 'unpublished' %>非公開
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col">
+        タグ
+      </div>
+      <div class="col">
+        <%= f.text_field :tag_list, value: @post.tag_list.join(','), placeholder: "複数のタグを入力する場合はタグとタグの間に「,」を入力してください", class: 'form-control' %>
+      </div>
+    </div>
+
+    <script>
+      $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#post_raty');
+      if(elem == null) return;
+
+      elem.innerHTML = ""
+      let opt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'post[star]',
+      score: <%= @post.star %>,
+      };
+      raty(elem, opt);
+      });
+    </script>
+
+
+    <div class="row py-3">
+      <div class="col">
+        <%= link_to "戻る", admin_post_path, class:"btn btn-primary" %>
+      </div>
+      <div class="col">
+        <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
