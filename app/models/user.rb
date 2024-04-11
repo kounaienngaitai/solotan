@@ -33,7 +33,7 @@ class User < ApplicationRecord
       user.postal_code = "1112222"
       user.address = "XX県XX市XX町"
       user.telephone_number = "09011111111"
-      user.status = "0"
+      user.status = 0
 
     end
   end
