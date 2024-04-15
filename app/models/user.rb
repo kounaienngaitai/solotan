@@ -44,22 +44,6 @@ class User < ApplicationRecord
 
   enum status: { active: 0, suspended: 1, withdrawn: 2 }
 
-  Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
-    admin.password = ENV['ADMIN_PASSWORD']
-  end
-
-  User.find_or_create_by!(email: ENV['USER1_EMAIL']) do |user|
-    user.password = ENV['USER1_PASSWORD']
-    user.last_name = "山田"
-    user.first_name = "太郎"
-    user.last_name_kana = "ヤマダ"
-    user.first_name_kana = "タロウ"
-    user.handle_name = "太郎（test1）"
-    user.birth_date = "19920301"
-    user.postal_code = "1112222"
-    user.address = "XX県XX市XX町"
-    user.telephone_number = "09011111111"
-    user.status = 0
-  end
+  
 
 end
