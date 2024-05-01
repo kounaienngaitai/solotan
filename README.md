@@ -30,7 +30,10 @@
 　投稿ページからソロ活情報を投稿することができます。<br>
 
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+-AWS構成図
+ https://drive.google.com/file/d/11ptZAimgJQDiYUK15izOe1UdQ1A0chXc/view?usp=sharing
+-インフラ設計書
+ https://docs.google.com/spreadsheets/d/1jmQAi2RCRLh4Gr_plJZQrmgia6_tmXZGzMEMne_ZGP0/edit?usp=sharing
 
 ## 実装機能リスト
 https://docs.google.com/spreadsheets/d/1g3ImLrje5fYap4VAMnRBuRsf6feMYAZlAVhmsjxJYrw/edit?usp=sharing
@@ -44,4 +47,3 @@ https://docs.google.com/spreadsheets/d/1g3ImLrje5fYap4VAMnRBuRsf6feMYAZlAVhmsjxJ
 ​
 ## 使用素材
 - Gem:devise,acts-as-taggable-on
--　※現時点では未定
